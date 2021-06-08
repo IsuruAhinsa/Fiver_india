@@ -15,7 +15,7 @@
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <script>
-        $(function() {
+        $(function () {
             csrf = $('input[name ="_token"]').val();
         });
 
@@ -36,7 +36,7 @@
                     <tbody>
                     <tr style="padding:0px;">
                         <td style="padding:0px;" width="150" valign="middle" align="center"><a
-                                    href="{{ route('patient') }}">
+                                href="{{ route('patient') }}">
                                 <img src="{{ asset('/nlimages/up2speedsmall.png') }}"
                                      style="display:inline;" height="50"></a></td>
                         <td width="20"></td>
@@ -64,9 +64,10 @@
                 <input type="hidden" name="gotodate">
                 <input type="hidden" name="encounterviewyear">
                 <input type="hidden" name="markbilling">
-                <form name="headerform" action="" method="" style="display:inline">
+
+               <form name="headerform" action="" method="" style="display:inline">
                     <font size="+1">Please select a patient to begin!</font>&nbsp;&nbsp;&nbsp;<select
-                            name="patientid" id="headerpatientid" style="width:150px" onchange="goToManage(event);">
+                        name="patientid" id="headerpatientid" style="width:150px" onchange="goToManage(event);">
                         <option value="" selected="">Select...</option>
                         @foreach ($starPriority as $sp1)
                             @foreach ($sp1 as $rec)
@@ -113,7 +114,7 @@
                 <table style="background-color:#f1f1f1;" width="238" cellspacing="0" cellpadding="5" border="0">
                     <tbody>
 
-                   <tr style="background-color:#d9d9d9;">
+                    <tr style="background-color:#d9d9d9;">
                         <td style="padding:0px;" align="center">
                             <table width="200">
                                 <tbody>
@@ -130,8 +131,8 @@
                                 </tr>
                                 <tr>
                                     <td valign="top" align="center"><a
-                                                style="color:black;text-decoration:none;"
-                                                href="newpatient.php?print=true">PRINT</a></td>
+                                            style="color:black;text-decoration:none;"
+                                            href="newpatient.php?print=true">PRINT</a></td>
                                     <td style="padding:0px;" valign="top" align="center"></td>
                                     <td valign="top" align="center"></td>
                                 </tr>
@@ -168,7 +169,7 @@
                         <td class="side-link {{ Route::current()->getName() == 'scheduler' ? 'active' : '' }} "
                             id="eduler.phptd" onmouseover="changebg('eduler.php','on','patient');"
                             onmouseout="changebg('eduler.php','off','patient')" align="center"><a
-                                    href="{{ route('scheduler') }}" style="color:white;text-decoration:none;">
+                                href="{{ route('scheduler') }}" style="color:white;text-decoration:none;">
                                 <div style="width:100%;height:100%">Scheduler</div>
                             </a></td>
                     </tr>
@@ -295,23 +296,24 @@
                                                             <tbody>
                                                             <tr>
                                                                 <td align="center"><a
-                                                                            href="{{ route('newpatient') }}">
-                                                                        <img src="{{ asset('nlimages/newpatient.png') }}"
-                                                                             height="50"><br><br>New Patient</a>
+                                                                        href="{{ route('newpatient') }}">
+                                                                        <img
+                                                                            src="{{ asset('nlimages/newpatient.png') }}"
+                                                                            height="50"><br><br>New Patient</a>
                                                                 </td>
                                                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 </td>
                                                                 <td align="center"><a
-                                                                            href="">
+                                                                        href="">
                                                                         <img src="{{ asset('nlimages/newvisit.png') }}"
                                                                              height="50"><br><br>New Visit</a>
                                                                 </td>
                                                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                 </td>
                                                                 <td align="center"><a
-                                                                            href="javascript:printsubmit();"><img
-                                                                                src="{{ asset('nlimages/printicon.png') }}"
-                                                                                height="50"><br><br>Print</a></td>
+                                                                        href="javascript:printsubmit();"><img
+                                                                            src="{{ asset('nlimages/printicon.png') }}"
+                                                                            height="50"><br><br>Print</a></td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -320,7 +322,20 @@
                                                 </tbody>
                                             </table>
                                             <hr>
-                                        </center><br>
+                                            @if(session()->has('success'))
+                                                <div class="alert alert-success alert-dismissible w-50">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="close">
+                                                                <span aria-hidden="true">
+                                                                    &times;
+                                                                </span>
+                                                    </button>
+                                                    <i class="fas fa-check-circle mr-2"></i>
+                                                    {!! session()->get('success') !!}
+                                                </div>
+                                            @endif
+                                        </center>
+                                        <br>
                                         <div id="filterdiv" style="display:block">
                                             <form action="" method="" autocomplete="off" name="manageform">
                                                 <input type="hidden" name="patientid">
@@ -345,23 +360,23 @@
                                                                                     </td>
                                                                                     <td>First Name:
                                                                                         <div
-                                                                                                class="autocompletefirst">
+                                                                                            class="autocompletefirst">
                                                                                             <input
-                                                                                                    id="firstname"
-                                                                                                    type="text"
-                                                                                                    name="firstname"
-                                                                                                    value="">
+                                                                                                id="firstname"
+                                                                                                type="text"
+                                                                                                name="firstname"
+                                                                                                value="">
                                                                                         </div>
                                                                                     </td>
                                                                                     <td>Last Name:
                                                                                         <div
-                                                                                                class="autocompletelast">
+                                                                                            class="autocompletelast">
 
                                                                                             <input
-                                                                                                    id="lastname"
-                                                                                                    type="text"
-                                                                                                    name="lastname"
-                                                                                                    value="">
+                                                                                                id="lastname"
+                                                                                                type="text"
+                                                                                                name="lastname"
+                                                                                                value="">
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
@@ -370,9 +385,9 @@
                                                                                             Only:</strong>
                                                                                     </td>
                                                                                     <td colspan="2"><input
-                                                                                                type="radio"
-                                                                                                name="showonly"
-                                                                                                value="cash">
+                                                                                            type="radio"
+                                                                                            name="showonly"
+                                                                                            value="cash">
                                                                                         Cash Patients
                                                                                         <input type="radio"
                                                                                                name="showonly"
@@ -389,167 +404,193 @@
                                                                                     </td>
                                                                                     <td>Date:
                                                                                         <select
-                                                                                                name="datemonth">
+                                                                                            name="datemonth">
                                                                                             <option
-                                                                                                    value="1">1
+                                                                                                value="1">1
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2">2
+                                                                                                value="2">2
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="3">3
+                                                                                                value="3">3
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="4">4
+                                                                                                value="4">4
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="5">5
+                                                                                                value="5">5
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="6">6
+                                                                                                value="6">6
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="7">7
+                                                                                                value="7">7
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="8"
-                                                                                                    selected="">
-                                                                                                8</option>
-                                                                                            <option
-                                                                                                    value="9">9
+                                                                                                value="8"
+                                                                                                selected="">
+                                                                                                8
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="10">
-                                                                                                10</option>
+                                                                                                value="9">9
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="11">
-                                                                                                11</option>
+                                                                                                value="10">
+                                                                                                10
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="12">
-                                                                                                12</option>
+                                                                                                value="11">
+                                                                                                11
+                                                                                            </option>
+                                                                                            <option
+                                                                                                value="12">
+                                                                                                12
+                                                                                            </option>
                                                                                         </select>
                                                                                         <select
-                                                                                                name="dateday">
+                                                                                            name="dateday">
                                                                                             <option
-                                                                                                    value="1">1
+                                                                                                value="1">1
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2">2
+                                                                                                value="2">2
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="3">3
+                                                                                                value="3">3
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="4">4
+                                                                                                value="4">4
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="5">5
+                                                                                                value="5">5
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="6">6
+                                                                                                value="6">6
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="7">7
+                                                                                                value="7">7
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="8">8
+                                                                                                value="8">8
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="9">9
+                                                                                                value="9">9
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="10">
-                                                                                                10</option>
+                                                                                                value="10">
+                                                                                                10
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="11">
-                                                                                                11</option>
+                                                                                                value="11">
+                                                                                                11
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="12">
-                                                                                                12</option>
+                                                                                                value="12">
+                                                                                                12
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="13">
-                                                                                                13</option>
+                                                                                                value="13">
+                                                                                                13
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="14">
-                                                                                                14</option>
+                                                                                                value="14">
+                                                                                                14
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="15">
-                                                                                                15</option>
+                                                                                                value="15">
+                                                                                                15
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="16">
-                                                                                                16</option>
+                                                                                                value="16">
+                                                                                                16
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="17">
-                                                                                                17</option>
+                                                                                                value="17">
+                                                                                                17
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="18">
-                                                                                                18</option>
+                                                                                                value="18">
+                                                                                                18
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="19">
-                                                                                                19</option>
+                                                                                                value="19">
+                                                                                                19
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="20">
-                                                                                                20</option>
+                                                                                                value="20">
+                                                                                                20
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="21">
-                                                                                                21</option>
+                                                                                                value="21">
+                                                                                                21
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="22">
-                                                                                                22</option>
+                                                                                                value="22">
+                                                                                                22
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="23">
-                                                                                                23</option>
+                                                                                                value="23">
+                                                                                                23
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="24">
-                                                                                                24</option>
+                                                                                                value="24">
+                                                                                                24
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="25">
-                                                                                                25</option>
+                                                                                                value="25">
+                                                                                                25
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="26">
-                                                                                                26</option>
+                                                                                                value="26">
+                                                                                                26
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="27"
-                                                                                                    selected="">
-                                                                                                27</option>
+                                                                                                value="27"
+                                                                                                selected="">
+                                                                                                27
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="28">
-                                                                                                28</option>
+                                                                                                value="28">
+                                                                                                28
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="29">
-                                                                                                29</option>
+                                                                                                value="29">
+                                                                                                29
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="30">
-                                                                                                30</option>
+                                                                                                value="30">
+                                                                                                30
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="31">
-                                                                                                31</option>
+                                                                                                value="31">
+                                                                                                31
+                                                                                            </option>
                                                                                         </select>
                                                                                         <select
-                                                                                                name="dateyear">
+                                                                                            name="dateyear">
                                                                                             <option
-                                                                                                    value="2015">
+                                                                                                value="2015">
                                                                                                 2015
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2016">
+                                                                                                value="2016">
                                                                                                 2016
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2017">
+                                                                                                value="2017">
                                                                                                 2017
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2018">
+                                                                                                value="2018">
                                                                                                 2018
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2019">
+                                                                                                value="2019">
                                                                                                 2019
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="2020"
-                                                                                                    selected="">
+                                                                                                value="2020"
+                                                                                                selected="">
                                                                                                 2020
                                                                                             </option>
                                                                                         </select>
@@ -560,9 +601,9 @@
                                                                                                value="visits"
                                                                                                checked="">
                                                                                         Visits <input
-                                                                                                type="radio"
-                                                                                                name="selectrange"
-                                                                                                value="lastaccessed">
+                                                                                            type="radio"
+                                                                                            name="selectrange"
+                                                                                            value="lastaccessed">
                                                                                         Last accessed
                                                                                     </td>
                                                                                 </tr>
@@ -572,17 +613,19 @@
                                                                                         Select Dates:
                                                                                         <select name="onor">
                                                                                             <option
-                                                                                                    value="All">
-                                                                                                All</option>
+                                                                                                value="All">
+                                                                                                All
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="On">
-                                                                                                On</option>
+                                                                                                value="On">
+                                                                                                On
+                                                                                            </option>
                                                                                             <option
-                                                                                                    value="On or Before">
+                                                                                                value="On or Before">
                                                                                                 On or Before
                                                                                             </option>
                                                                                             <option
-                                                                                                    value="On or After">
+                                                                                                value="On or After">
                                                                                                 On or After
                                                                                             </option>
                                                                                         </select>
@@ -594,15 +637,15 @@
                                                                                                 <td>
                                                                                                 </td>
                                                                                                 <td><input
-                                                                                                            type="radio"
-                                                                                                            name="last"
-                                                                                                            value="Today">
+                                                                                                        type="radio"
+                                                                                                        name="last"
+                                                                                                        value="Today">
                                                                                                     Today
                                                                                                 </td>
                                                                                                 <td><input
-                                                                                                            type="radio"
-                                                                                                            name="last"
-                                                                                                            value="Yesterday">
+                                                                                                        type="radio"
+                                                                                                        name="last"
+                                                                                                        value="Yesterday">
                                                                                                     Yesterday
                                                                                                 </td>
                                                                                             </tr>
@@ -610,22 +653,22 @@
                                                                                                 <td>Last:
                                                                                                 </td>
                                                                                                 <td><input
-                                                                                                            type="radio"
-                                                                                                            name="last"
-                                                                                                            value="3 Days">
+                                                                                                        type="radio"
+                                                                                                        name="last"
+                                                                                                        value="3 Days">
                                                                                                     3
                                                                                                     Days
                                                                                                 </td>
                                                                                                 <td><input
-                                                                                                            type="radio"
-                                                                                                            name="last"
-                                                                                                            value="Week">
+                                                                                                        type="radio"
+                                                                                                        name="last"
+                                                                                                        value="Week">
                                                                                                     Week
                                                                                                 </td>
                                                                                                 <td><input
-                                                                                                            type="radio"
-                                                                                                            name="last"
-                                                                                                            value="Month">
+                                                                                                        type="radio"
+                                                                                                        name="last"
+                                                                                                        value="Month">
                                                                                                     Month
                                                                                                 </td>
                                                                                             </tr>
@@ -647,7 +690,8 @@
                                                             </td>
                                                         </tr>
                                                         </tbody>
-                                                    </table><br>
+                                                    </table>
+                                                    <br>
                                                 </center>
                                             </form>
                                         </div>
@@ -681,17 +725,20 @@
                                                                                      onchange="javascript:submitsort();"
                                                                                      id="sortby">
                                                                         <option value="lastname" selected="">
-                                                                            Last Name</option>
+                                                                            Last Name
+                                                                        </option>
                                                                         <option value="firstname">First Name
                                                                         </option>
                                                                         <option value="created">Recently Created
                                                                         </option>
                                                                         <option value="accessed">Recently
-                                                                            Accessed</option>
+                                                                            Accessed
+                                                                        </option>
                                                                         <option value="cash">Cash Patients
                                                                         </option>
                                                                         <option value="insurance">Insurance
-                                                                            Patients</option>
+                                                                            Patients
+                                                                        </option>
                                                                         <option value="piwc">PI / WC Patients
                                                                         </option>
                                                                     </select>
@@ -700,24 +747,26 @@
                                                                 <td>
                                                                     <div id="showbillingpayment"
                                                                          style="display: block;"><input
-                                                                                type="radio" name="showbillpay"
-                                                                                id="showall"
-                                                                                onclick="filterbillpay();"
-                                                                                checked=""> Show All
+                                                                            type="radio" name="showbillpay"
+                                                                            id="showall"
+                                                                            onclick="filterbillpay();"
+                                                                            checked=""> Show All
                                                                         <strong>Billing</strong>: <input
-                                                                                type="radio" name="showbillpay"
-                                                                                id="showincomplete"
-                                                                                onclick="filterbillpay();">
+                                                                            type="radio" name="showbillpay"
+                                                                            id="showincomplete"
+                                                                            onclick="filterbillpay();">
                                                                         Incomplete <input type="radio"
-                                                                                          name="showbillpay" id="showready"
-                                                                                          onclick="filterbillpay();"> Ready
+                                                                                          name="showbillpay"
+                                                                                          id="showready"
+                                                                                          onclick="filterbillpay();">
+                                                                        Ready
                                                                         <input type="radio" name="showbillpay"
                                                                                id="showcomplete"
                                                                                onclick="filterbillpay();"> Complete
                                                                         <strong>Payment</strong>: <input
-                                                                                type="radio" name="showbillpay"
-                                                                                id="showwaiting"
-                                                                                onclick="filterbillpay();"> Waiting
+                                                                            type="radio" name="showbillpay"
+                                                                            id="showwaiting"
+                                                                            onclick="filterbillpay();"> Waiting
                                                                         <input type="radio" name="showbillpay"
                                                                                id="showpartial"
                                                                                onclick="filterbillpay();"> Partial
@@ -733,7 +782,8 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                        </center><br>
+                                        </center>
+                                        <br>
                                         <form name="form" action="" method="" autocomplete="off"
                                               onsubmit="javascript:submitStar();bpsubmit();phonesubmit();">
                                             <input type="hidden" name="passfilterpatient" value="">
@@ -747,21 +797,31 @@
                                             <input type="hidden" name="billorpay">
                                             <input type="hidden" name="billpaystatus">
                                             <input type="hidden" name="billingstatus" id="billingstatus"><input
-                                                    type="hidden" name="paymentstatus" id="paymentstatus"><input
-                                                    type="hidden" name="billingclaimnumber" id="billingclaimnumber"><input
-                                                    type="hidden" name="billingdatesent" id="billingdatesent"><input
-                                                    type="hidden" name="billingamount" id="billingamount"><input
-                                                    type="hidden" name="billingnotes" id="billingnotes"><input type="hidden"
-                                                                                                               name="billingdeductible" id="billingdeductible"><input type="hidden"
-                                                                                                                                                                      name="billingpaid" id="billingpaid"><input type="hidden"
-                                                                                                                                                                                                                 name="paymentnotes" id="paymentnotes"><input type="hidden"
-                                                                                                                                                                                                                                                              name="phonecall" id="phonecall"><input type="hidden"
-                                                                                                                                                                                                                                                                                                     name="phonecalldate" id="phonecalldate"><input type="hidden"
-                                                                                                                                                                                                                                                                                                                                                    name="phonecalltime" id="phonecalltime"><input type="hidden"
-                                                                                                                                                                                                                                                                                                                                                                                                   name="phonecallnumber" id="phonecallnumber"><input type="hidden"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      name="phonecallemail" id="phonecallemail"><input type="hidden"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       name="phonecallnotes" id="phonecallnotes"><input type="hidden"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        name="selectedpatients" id="selectedpatients">
+                                                type="hidden" name="paymentstatus" id="paymentstatus"><input
+                                                type="hidden" name="billingclaimnumber" id="billingclaimnumber"><input
+                                                type="hidden" name="billingdatesent" id="billingdatesent"><input
+                                                type="hidden" name="billingamount" id="billingamount"><input
+                                                type="hidden" name="billingnotes" id="billingnotes"><input type="hidden"
+                                                                                                           name="billingdeductible"
+                                                                                                           id="billingdeductible"><input
+                                                type="hidden"
+                                                name="billingpaid" id="billingpaid"><input type="hidden"
+                                                                                           name="paymentnotes"
+                                                                                           id="paymentnotes"><input
+                                                type="hidden"
+                                                name="phonecall" id="phonecall"><input type="hidden"
+                                                                                       name="phonecalldate"
+                                                                                       id="phonecalldate"><input
+                                                type="hidden"
+                                                name="phonecalltime" id="phonecalltime"><input type="hidden"
+                                                                                               name="phonecallnumber"
+                                                                                               id="phonecallnumber"><input
+                                                type="hidden"
+                                                name="phonecallemail" id="phonecallemail"><input type="hidden"
+                                                                                                 name="phonecallnotes"
+                                                                                                 id="phonecallnotes"><input
+                                                type="hidden"
+                                                name="selectedpatients" id="selectedpatients">
                                             <input type="hidden" name="patientid" id="patientid">
                                             <input type="hidden" name="encounterdate" id="encounterdate">
                                             <input type="hidden" name="newencounter" id="newencounter">
@@ -786,8 +846,8 @@
 
                                                 </script>
                                                 <table
-                                                        style="border-top:2px solid #999494;border-bottom:2px solid #999494;"
-                                                        width="85%" cellspacing="0" cellpadding="10">
+                                                    style="border-top:2px solid #999494;border-bottom:2px solid #999494;"
+                                                    width="85%" cellspacing="0" cellpadding="10">
                                                     <tbody>
                                                     <tr>
                                                         <td width="4%" align="center"></td>
@@ -801,9 +861,10 @@
                                                                              height="20">
                                                                     </td>
                                                                     <td>
-                                                                        <img src="{{ asset('nlimages/phonefirstinactive.png') }}"
-                                                                             onclick="phonefirstsubmit('yes');"
-                                                                             height="20">
+                                                                        <img
+                                                                            src="{{ asset('nlimages/phonefirstinactive.png') }}"
+                                                                            onclick="phonefirstsubmit('yes');"
+                                                                            height="20">
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
@@ -909,6 +970,7 @@
                                                         document.form.markonly.value = 'true';
                                                         document.form.submit();
                                                     }
+
                                                     var shownphone = '';
                                                     var patienthascall = [];
 
@@ -948,6 +1010,7 @@
                                                         }
                                                         // }
                                                     }
+
                                                     var bpshown,
                                                         shown,
                                                         shownuk;
@@ -1136,13 +1199,16 @@
                                                             <table style="border-top:1px solid black;" width="85%"
                                                                    cellspacing="0" cellpadding="0" bgcolor="#d2d2d0">
                                                                 <tbody>
-                                                                <tr height="25" bgcolor="{{$index % 2? '#FFFFFF':'#d2d2d0'}}" id="patientRow{{$record->id}}">
+                                                                <tr height="25"
+                                                                    bgcolor="{{$index % 2? '#FFFFFF':'#d2d2d0'}}"
+                                                                    id="patientRow{{$record->id}}">
                                                                     <th class="text-center table-sr bg-{{$pKey}}">
                                                                         {{$index+1}}
                                                                     </th>
                                                                     <td width="2%" align="center">
                                                                         <a href="{{route('manage',$record->id)}}">
-                                                                            <input type="radio" name="patientselect" value="0" class="no-print">
+                                                                            <input type="radio" name="patientselect"
+                                                                                   value="0" class="no-print">
                                                                         </a>
                                                                     </td>
                                                                     <td width="6%" align="center">
@@ -1158,89 +1224,101 @@
                                                                                                 <td width="25"
                                                                                                     align="center">
                                                                                                     @if ($record->starred == 'yes')
-                                                                                                        <img src="{{ asset('nlimages/manageicons/star' . $record->starpriority . 'active.png') }}"
-                                                                                                             onmouseover="previewstar({{ $record->id }},'on');"
-                                                                                                             onmouseout="previewstar({{ $record->id }},'off');"
-                                                                                                             onclick="showstar({{ $record->id }})"
-                                                                                                             ondblclick="submitStar({{ $record->id }},'off');"
-                                                                                                             height="20">
+                                                                                                        <img
+                                                                                                            src="{{ asset('nlimages/manageicons/star' . $record->starpriority . 'active.png') }}"
+                                                                                                            onmouseover="previewstar({{ $record->id }},'on');"
+                                                                                                            onmouseout="previewstar({{ $record->id }},'off');"
+                                                                                                            onclick="showstar({{ $record->id }})"
+                                                                                                            ondblclick="submitStar({{ $record->id }},'off');"
+                                                                                                            height="20">
                                                                                                     @else
-                                                                                                        <img src="{{ asset('nlimages/manageicons/starinactive.png') }}"
-                                                                                                             onmouseover="previewstar({{ $record->id }},'on');"
-                                                                                                             onmouseout="previewstar({{ $record->id }},'off');"
-                                                                                                             onclick="showstar({{ $record->id }})"
-                                                                                                             ondblclick="submitStar({{ $record->id }},'');"
-                                                                                                             height="20">
+                                                                                                        <img
+                                                                                                            src="{{ asset('nlimages/manageicons/starinactive.png') }}"
+                                                                                                            onmouseover="previewstar({{ $record->id }},'on');"
+                                                                                                            onmouseout="previewstar({{ $record->id }},'off');"
+                                                                                                            onclick="showstar({{ $record->id }})"
+                                                                                                            ondblclick="submitStar({{ $record->id }},'');"
+                                                                                                            height="20">
                                                                                                     @endif
                                                                                                 </td>
                                                                                             </tr>
                                                                                             </tbody>
                                                                                         </table>
-                                                                                        <div style="text-align: left; position: absolute; top: 23px; min-height: 230px; min-width: 300px; display: none; background-color: rgb(253, 255, 122); border: 1px solid rgb(255, 144, 0); z-index: 1; padding: 15px;"
-                                                                                             id="stardiv{{ $record->id }}">
+                                                                                        <div
+                                                                                            style="text-align: left; position: absolute; top: 23px; min-height: 230px; min-width: 300px; display: none; background-color: rgb(253, 255, 122); border: 1px solid rgb(255, 144, 0); z-index: 1; padding: 15px;"
+                                                                                            id="stardiv{{ $record->id }}">
                                                                                             (Double-click to
                                                                                             star/unstar)
                                                                                             <span style="float:right;">
-                                                                                                                        <img src="{{ asset('images/delete.png') }}"
-                                                                                                                             onclick="showstar({{ $record->id }});"
-                                                                                                                             width="20"
-                                                                                                                             height="20">
+                                                                                                                        <img
+                                                                                                                            src="{{ asset('images/delete.png') }}"
+                                                                                                                            onclick="showstar({{ $record->id }});"
+                                                                                                                            width="20"
+                                                                                                                            height="20">
                                                                                                                         </span><br><br>
                                                                                             <table cellspacing="0"
                                                                                                    cellpadding="0">
                                                                                                 <tbody>
                                                                                                 <tr valign="bottom">
                                                                                                     <td width="80">
-                                                                                                        Priority:</td>
-                                                                                                    <td width="35"
-                                                                                                        valign="bottom">
-                                                                                                        <img id="starbilling{{ $record->id }}"
-                                                                                                             src={{ asset('nlimages/manageicons/' . ($record->starred == 'yes' && $record->starpriority == 'billing' ? 'starbillingactive' : 'starbillinginactive') . '.png') }}
-                                                                                                                     onclick="starchange({{ $record->id }},'billing');"
-                                                                                                             ondblclick="submitStar(true);"
-                                                                                                             height="20">
+                                                                                                        Priority:
                                                                                                     </td>
                                                                                                     <td width="35"
                                                                                                         valign="bottom">
-                                                                                                        <img id="starhigh{{ $record->id }}"
-                                                                                                             src={{ asset('nlimages/manageicons/' . ($record->starred == 'yes' && $record->starpriority == 'high' /*|| $record->starpriority == ''*/ ? 'starhighactive' : 'starhighinactive') . '.png') }}
-                                                                                                                     onclick="starchange({{ $record->id }},'high')"
-                                                                                                             ondblclick="submitStar(true);"
-                                                                                                             height="20">
+                                                                                                        <img
+                                                                                                            id="starbilling{{ $record->id }}"
+                                                                                                            src={{ asset('nlimages/manageicons/' . ($record->starred == 'yes' && $record->starpriority == 'billing' ? 'starbillingactive' : 'starbillinginactive') . '.png') }}
+                                                                                                                onclick="starchange({{ $record->id }},'billing');"
+                                                                                                            ondblclick="submitStar(true);"
+                                                                                                            height="20">
                                                                                                     </td>
                                                                                                     <td width="35"
                                                                                                         valign="bottom">
-                                                                                                        <img id="starmedium{{ $record->id }}"
-                                                                                                             src={{ asset('nlimages/manageicons/' . ($record->starpriority == 'medium' ? 'starmediumactive' : 'starmediuminactive') . '.png') }}
-                                                                                                                     onclick="starchange({{ $record->id }},'medium');"
-                                                                                                             ondblclick="submitStar(true);"
-                                                                                                             height="20">
+                                                                                                        <img
+                                                                                                            id="starhigh{{ $record->id }}"
+                                                                                                            src={{ asset('nlimages/manageicons/' . ($record->starred == 'yes' && $record->starpriority == 'high' /*|| $record->starpriority == ''*/ ? 'starhighactive' : 'starhighinactive') . '.png') }}
+                                                                                                                onclick="starchange({{ $record->id }},'high')"
+                                                                                                            ondblclick="submitStar(true);"
+                                                                                                            height="20">
                                                                                                     </td>
                                                                                                     <td width="35"
                                                                                                         valign="bottom">
-                                                                                                        <img id="starlow{{ $record->id }}"
-                                                                                                             src={{ asset('nlimages/manageicons/' . ($record->starpriority == 'low' ? 'starlowactive' : 'starlowinactive') . '.png') }}
-                                                                                                                     onclick="starchange({{ $record->id }},'low');"
-                                                                                                             ondblclick="submitStar(true);"
-                                                                                                             height="20">
+                                                                                                        <img
+                                                                                                            id="starmedium{{ $record->id }}"
+                                                                                                            src={{ asset('nlimages/manageicons/' . ($record->starpriority == 'medium' ? 'starmediumactive' : 'starmediuminactive') . '.png') }}
+                                                                                                                onclick="starchange({{ $record->id }},'medium');"
+                                                                                                            ondblclick="submitStar(true);"
+                                                                                                            height="20">
+                                                                                                    </td>
+                                                                                                    <td width="35"
+                                                                                                        valign="bottom">
+                                                                                                        <img
+                                                                                                            id="starlow{{ $record->id }}"
+                                                                                                            src={{ asset('nlimages/manageicons/' . ($record->starpriority == 'low' ? 'starlowactive' : 'starlowinactive') . '.png') }}
+                                                                                                                onclick="starchange({{ $record->id }},'low');"
+                                                                                                            ondblclick="submitStar(true);"
+                                                                                                            height="20">
                                                                                                     </td>
                                                                                                     <td width="30"><a
-                                                                                                                href="javascript:submitStar({{ $record->id }},'off');">Unstar</a>
+                                                                                                            href="javascript:submitStar({{ $record->id }},'off');">Unstar</a>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 </tbody>
-                                                                                            </table><br>
+                                                                                            </table>
+                                                                                            <br>
                                                                                             <input type="hidden"
                                                                                                    id="starpriority{{ $record->id }}"
                                                                                                    value="{{ $record->starpriority != '' ? $record->starpriority : 'high' }}">
                                                                                             <center>
                                                                                                                         <textarea
-                                                                                                                                style="width:250px;height:75px;"
-                                                                                                                                id="starnotes{{ $record->id }}">{{ $record->starnotes }}</textarea><br><br>
-                                                                                                <button type='button' class="btn p-0">
-                                                                                                    <img src="{{ asset('nlimages/submitbutton.png') }}"
-                                                                                                         alt="Submit"
-                                                                                                         onclick="submitStar({{ $record->id }})">
+                                                                                                                            style="width:250px;height:75px;"
+                                                                                                                            id="starnotes{{ $record->id }}">{{ $record->starnotes }}</textarea><br><br>
+                                                                                                <button type='button'
+                                                                                                        class="btn p-0">
+                                                                                                    <img
+                                                                                                        src="{{ asset('nlimages/submitbutton.png') }}"
+                                                                                                        alt="Submit"
+                                                                                                        onclick="submitStar({{ $record->id }})">
                                                                                                 </button>
                                                                                             </center>
                                                                                         </div>
@@ -1258,49 +1336,61 @@
                                                                                                     $phoneCount++;
                                                                                                 @endphp
                                                                                                 @if ($pc->phonecall == 'yes')
-                                                                                                    <img id="phonecallicon{{ $record->id }}"
-                                                                                                         src="{{ asset('nlimages/manageicons/phoneactive.png') }}"
-                                                                                                         onmouseover="previewphoneall({{ $record->id }},'on');"
-                                                                                                         onmouseout="previewphoneall({{ $record->id }},'off');"
-                                                                                                         onclick="showphoneall({{ $record->id }});"
-                                                                                                         width="20" height="20">
-                                                                                                    <div style="text-align:left;position:absolute;top:23px;left;0px;min-height:350px;min-width:300px;display:none;background-color:#d2d2d2;border:1px solid #e62129;z-index:1;padding:15px;"
-                                                                                                         id="phoneall{{ $record->id }}">
-                                                                                                        <table width="100%">
+                                                                                                    <img
+                                                                                                        id="phonecallicon{{ $record->id }}"
+                                                                                                        src="{{ asset('nlimages/manageicons/phoneactive.png') }}"
+                                                                                                        onmouseover="previewphoneall({{ $record->id }},'on');"
+                                                                                                        onmouseout="previewphoneall({{ $record->id }},'off');"
+                                                                                                        onclick="showphoneall({{ $record->id }});"
+                                                                                                        width="20"
+                                                                                                        height="20">
+                                                                                                    <div
+                                                                                                        style="text-align:left;position:absolute;top:23px;left;0px;min-height:350px;min-width:300px;display:none;background-color:#d2d2d2;border:1px solid #e62129;z-index:1;padding:15px;"
+                                                                                                        id="phoneall{{ $record->id }}">
+                                                                                                        <table
+                                                                                                            width="100%">
                                                                                                             <tr class="mt-3">
                                                                                                                 <td colspan='2'
                                                                                                                     style="text-align: right;">
-                                                                                                                    <img src="{{ asset('images/delete.png') }}"
-                                                                                                                         onclick="showphoneall({{ $record->id }});">
+                                                                                                                    <img
+                                                                                                                        src="{{ asset('images/delete.png') }}"
+                                                                                                                        onclick="showphoneall({{ $record->id }});">
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td> <br> </td>
+                                                                                                                <td><br>
+                                                                                                                </td>
                                                                                                             </tr>
                                                                                                             <tr
-                                                                                                                    style="text-align: center;">
+                                                                                                                style="text-align: center;">
                                                                                                                 <th colspan="2">
-                                                                                                                    Call for
+                                                                                                                    Call
+                                                                                                                    for
                                                                                                                     visit:
                                                                                                                     {{ $encount->encounterdate }}
                                                                                                                 </th>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td> <br> </td>
+                                                                                                                <td><br>
+                                                                                                                </td>
                                                                                                             </tr>
                                                                                                             <tr
-                                                                                                                    style="text-align: center;">
+                                                                                                                style="text-align: center;">
                                                                                                                 <td colspan="2">
-                                                                                                                    (Most recent
-                                                                                                                    call needed)
+                                                                                                                    (Most
+                                                                                                                    recent
+                                                                                                                    call
+                                                                                                                    needed)
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td> <br> </td>
+                                                                                                                <td><br>
+                                                                                                                </td>
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                 <td>
-                                                                                                                    Date Called:
+                                                                                                                    Date
+                                                                                                                    Called:
                                                                                                                 </td>
                                                                                                                 <td>
                                                                                                                     {{ $encount->phonecalldate != '' ? $encount->phonecalldate : 'Not listed' }}
@@ -1308,7 +1398,8 @@
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                 <td>
-                                                                                                                    Time Called:
+                                                                                                                    Time
+                                                                                                                    Called:
                                                                                                                 </td>
                                                                                                                 <td>
                                                                                                                     {{ $encount->phonecalltime != '' ? $encount->phonecalltime : 'Not listed' }}
@@ -1333,7 +1424,8 @@
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td> <br> </td>
+                                                                                                                <td><br>
+                                                                                                                </td>
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                 <td>
@@ -1345,34 +1437,41 @@
                                                                                                         </table>
                                                                                                     </div>
                                                                                                 @else
-                                                                                                    <img id="phonecallicon{{ $record->id }}"
-                                                                                                         src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
-                                                                                                         onmouseover="previewphoneall({{ $record->id }},'on');"
-                                                                                                         onmouseout="previewphoneall({{ $record->id }},'off');"
-                                                                                                         onclick="showphoneall({{ $record->id }});"
-                                                                                                         width="20" height="20">
+                                                                                                    <img
+                                                                                                        id="phonecallicon{{ $record->id }}"
+                                                                                                        src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
+                                                                                                        onmouseover="previewphoneall({{ $record->id }},'on');"
+                                                                                                        onmouseout="previewphoneall({{ $record->id }},'off');"
+                                                                                                        onclick="showphoneall({{ $record->id }});"
+                                                                                                        width="20"
+                                                                                                        height="20">
                                                                                                 @endif
                                                                                             @endif
                                                                                         @empty
-                                                                                            <img id="phonecallicon{{ $record->id }}"
-                                                                                                 src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
-                                                                                                 onmouseover="previewphoneall({{ $record->id }},'on');"
-                                                                                                 onmouseout="previewphoneall({{ $record->id }},'off');"
-                                                                                                 onclick="showphoneall({{ $record->id }});"
-                                                                                                 width="20" height="20">
+                                                                                            <img
+                                                                                                id="phonecallicon{{ $record->id }}"
+                                                                                                src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
+                                                                                                onmouseover="previewphoneall({{ $record->id }},'on');"
+                                                                                                onmouseout="previewphoneall({{ $record->id }},'off');"
+                                                                                                onclick="showphoneall({{ $record->id }});"
+                                                                                                width="20" height="20">
                                                                                         @endforelse
                                                                                         @if (!$phoneCount)
-                                                                                            <img id="phonecallicon{{ $record->id }}"
-                                                                                                 src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
-                                                                                                 onmouseover="previewphoneall({{ $record->id }},'on');"
-                                                                                                 onmouseout="previewphoneall({{ $record->id }},'off');"
-                                                                                                 onclick="showphoneall({{ $record->id }});" width="20"
-                                                                                                 height="20">
+                                                                                            <img
+                                                                                                id="phonecallicon{{ $record->id }}"
+                                                                                                src="{{ asset('nlimages/manageicons/phoneinactive.png') }}"
+                                                                                                onmouseover="previewphoneall({{ $record->id }},'on');"
+                                                                                                onmouseout="previewphoneall({{ $record->id }},'off');"
+                                                                                                onclick="showphoneall({{ $record->id }});"
+                                                                                                width="20"
+                                                                                                height="20">
                                                                                         @endif
                                                                                     </div>
                                                                                 </td>
-                                                                                <td style="padding-top:0px;padding-bottom:0px;text-align:center;" width="25">
-                                                                                    <div style="position:relative;" class="no-print">
+                                                                                <td style="padding-top:0px;padding-bottom:0px;text-align:center;"
+                                                                                    width="25">
+                                                                                    <div style="position:relative;"
+                                                                                         class="no-print">
                                                                                         @php
                                                                                             $record->pitype = str_replace_array('%SE%', [''], $record->pitype);
                                                                                             $record->carriername = str_replace_array('%SE%', [''],
@@ -1412,18 +1511,22 @@
                                                                                                     @endphp
                                                                                                 @endif
                                                                                                 <a href="{{route('insuranceinfo', $record->id)}}">
-                                                                                                    <img src={{ asset("nlimages/manageicons/$icon.png") }}
+                                                                                                    <img
+                                                                                                        src={{ asset("nlimages/manageicons/$icon.png") }}
                                                                                                             style="z-index:-1;"
-                                                                                                         onmouseover="showpayment({{ $record->id }});"
-                                                                                                         onmouseout="hidepayment({{ $record->id }});" width="20"
-                                                                                                         height="20">
+                                                                                                        onmouseover="showpayment({{ $record->id }});"
+                                                                                                        onmouseout="hidepayment({{ $record->id }});"
+                                                                                                        width="20"
+                                                                                                        height="20">
                                                                                                 </a>
-                                                                                                <div style="text-align:left;position:absolute;top:23px;left;0px;min-height:275px;min-width:400px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
-                                                                                                     id="paymentdrop{{ $record->id }}">
+                                                                                                <div
+                                                                                                    style="text-align:left;position:absolute;top:23px;left;0px;min-height:275px;min-width:400px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
+                                                                                                    id="paymentdrop{{ $record->id }}">
                                                                                                     {{ $pi }}
                                                                                                     <br>
                                                                                                     Insurance carrier:
-                                                                                                    {{ $record->carriername != '' ? $record->carriername : 'Not listed' }}<br><br>
+                                                                                                    {{ $record->carriername != '' ? $record->carriername : 'Not listed' }}
+                                                                                                    <br><br>
                                                                                                     Name of Adjuster:
                                                                                                     {{ $record->claimsadjuster != '' ? $record->claimsadjuster : 'Not listed' }}
                                                                                                     <br><br>
@@ -1443,7 +1546,9 @@
                                                                                                         $visitsused = is_numeric($record->visitsused) ?
                                                                                                         $record->visitsused : 0;
                                                                                                     @endphp
-                                                                                                    Visits Used <b>({{ date('Y') }})</b>:
+                                                                                                    Visits Used
+                                                                                                    <b>({{ date('Y') }}
+                                                                                                        )</b>:
                                                                                                     {{ $thisYearVisits + $visitsused }}
                                                                                                     {{ $record->visitsauthorized == '' ? '' : ' out of  ' . $record->visitsauthorized }}
                                                                                                     <br><br>
@@ -1459,15 +1564,18 @@
                                                                                                         $icon = 'cashicon';
                                                                                                     @endphp
                                                                                                 @endif
-                                                                                                <a  href="{{route('insuranceinfo', $record->id)}}">
-                                                                                                    <img src={{ asset("nlimages/manageicons/$icon.png") }}
+                                                                                                <a href="{{route('insuranceinfo', $record->id)}}">
+                                                                                                    <img
+                                                                                                        src={{ asset("nlimages/manageicons/$icon.png") }}
                                                                                                             style="z-index:-1;"
-                                                                                                         onmouseover="showpayment({{ $record->id }});"
-                                                                                                         onmouseout="hidepayment({{ $record->id }});" width="20"
-                                                                                                         height="20">
+                                                                                                        onmouseover="showpayment({{ $record->id }});"
+                                                                                                        onmouseout="hidepayment({{ $record->id }});"
+                                                                                                        width="20"
+                                                                                                        height="20">
                                                                                                 </a>
-                                                                                                <div style="text-align:left;position:absolute;top:23px;left;0px;height:275px;width:400px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
-                                                                                                     id="paymentdrop{{ $record->id }}">
+                                                                                                <div
+                                                                                                    style="text-align:left;position:absolute;top:23px;left;0px;height:275px;width:400px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
+                                                                                                    id="paymentdrop{{ $record->id }}">
                                                                                                     Cost per visit:
                                                                                                     {{ $record->costpervisit != '' ? '$' . $record->costpervisit : 'Not listed' }}
                                                                                                     <br>
@@ -1476,62 +1584,83 @@
                                                                                                 </div>
                                                                                             @endif
                                                                                         @else
-                                                                                            <img src="{{ asset('nlimages/spacer.png') }}" style="z-index:-1;"
-                                                                                                 onmouseover="showpayment({{ $record->id }});"
-                                                                                                 onmouseout="hidepayment({{ $record->id }});" width="20" height="20">
+                                                                                            <img
+                                                                                                src="{{ asset('nlimages/spacer.png') }}"
+                                                                                                style="z-index:-1;"
+                                                                                                onmouseover="showpayment({{ $record->id }});"
+                                                                                                onmouseout="hidepayment({{ $record->id }});"
+                                                                                                width="20" height="20">
                                                                                         @endif
                                                                                     </div>
                                                                                 </td>
-                                                                                <td style="padding-top:0px;padding-bottom:0px;" width="25">
-                                                                                    <img src="{{ asset('nlimages/manageicons/photoicon.png') }}" onmouseover="showphoto({{ $record->id }});"
-                                                                                                 onmouseout="hidephoto({{ $record->id }});" width="20" height="20" width="20" height="20">
-                                                                                                 
-                                               <div 
-                                               style="position: absolute;  left: 446px;; height: 100px; width: 75px; display: none; z-index: 1;" 
-                                               id="photo{{ $record->id }}">
-                                               <img src="patientphotos/{{ $record->patientphoto }}" height="200" >
-                                            </div>                                 
-                                        </td>
+                                                                                <td style="padding-top:0px;padding-bottom:0px;"
+                                                                                    width="25">
+                                                                                    <img
+                                                                                        src="{{ asset('nlimages/manageicons/photoicon.png') }}"
+                                                                                        onmouseover="showphoto({{ $record->id }});"
+                                                                                        onmouseout="hidephoto({{ $record->id }});"
+                                                                                        width="20" height="20"
+                                                                                        width="20" height="20">
+
+                                                                                    <div
+                                                                                        style="position: absolute;  left: 446px;; height: 100px; width: 75px; display: none; z-index: 1;"
+                                                                                        id="photo{{ $record->id }}">
+                                                                                        <img
+                                                                                            src="patientphotos/{{ $record->patientphoto }}"
+                                                                                            height="200">
+                                                                                    </div>
+                                                                                </td>
                                                                             </tr>
                                                                             </tbody>
                                                                         </table>
                                                                     </td>
                                                                     <td width="20%" valign="middle">
-                                                                        <a href="javascript:showhide({{ $record->id }});" style="text-decoration:none;color:black">
-                                                                            <img src="{{ asset('images/plus.png') }}" id="img{{ $record->id }}" class="no-print">
-                                                                            {{ $record->lastname }}, {{ $record->firstname }}
+                                                                        <a href="javascript:showhide({{ $record->id }});"
+                                                                           style="text-decoration:none;color:black">
+                                                                            <img src="{{ asset('images/plus.png') }}"
+                                                                                 id="img{{ $record->id }}"
+                                                                                 class="no-print">
+                                                                            {{ $record->lastname }}
+                                                                            , {{ $record->firstname }}
                                                                         </a>
                                                                     </td>
- @if ($record->paymenttype == 'Insurance')
-<td width="49%" align="left">
-    <img src="nlimages/billing/billingready.png" width="15" height="15" id="billingimg{{ $record->id }}">
-    <img src="nlimages/billing/paymentwaiting.png" width="15" height="15" id="paymentimg{{ $record->id }}"></td>
-@else
-<td width="49%" align="left">
-    <img src="nlimages/billing/paymentwaiting.png" width="15" height="15" id="paymentimg{{ $record->id }}"></td>
-@endif
+                                                                    @if ($record->paymenttype == 'Insurance')
+                                                                        <td width="49%" align="left">
+                                                                            <img src="nlimages/billing/billingready.png"
+                                                                                 width="15" height="15"
+                                                                                 id="billingimg{{ $record->id }}">
+                                                                            <img
+                                                                                src="nlimages/billing/paymentwaiting.png"
+                                                                                width="15" height="15"
+                                                                                id="paymentimg{{ $record->id }}"></td>
+                                                                    @else
+                                                                        <td width="49%" align="left">
+                                                                            <img
+                                                                                src="nlimages/billing/paymentwaiting.png"
+                                                                                width="15" height="15"
+                                                                                id="paymentimg{{ $record->id }}"></td>
+                                                                    @endif
 
-                                                            
 
-
-
-
-                                                                
                                                                     <td width="10%" align="center">
                                                                         <table cellspacing="0" cellpadding="0">
                                                                             <tbody>
                                                                             <tr>
                                                                                 <td width="20" align="center">
                                                                                     <a href="{{ route('edit', $record->id) }}">
-                                                                                        <img src="{{ asset('nlimages/patienticonnew.png') }}" class="no-print"
-                                                                                             height="20">
+                                                                                        <img
+                                                                                            src="{{ asset('nlimages/patienticonnew.png') }}"
+                                                                                            class="no-print"
+                                                                                            height="20">
                                                                                     </a>
                                                                                 </td>
                                                                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                 <td width="20" align="center">
                                                                                     <a href={{route("billing", $record->id)}}>
-                                                                                        <img src="{{ asset('nlimages/billingnew.png') }}" class="no-print"
-                                                                                             height="20">
+                                                                                        <img
+                                                                                            src="{{ asset('nlimages/billingnew.png') }}"
+                                                                                            class="no-print"
+                                                                                            height="20">
                                                                                     </a>
                                                                                 </td>
                                                                             </tr>
@@ -1539,14 +1668,18 @@
                                                                         </table>
                                                                     </td>
                                                                     <td width="10%" align="center">
-                                                                        <button type="button" class="btn p-0" onclick="deletePatient('{{$record->id }}', '{{ $record->firstname }}', '{{ $record->lastname }}')">
-                                                                            <img src="{{ asset('nlimages/delete.png') }}" height="20">
-                                                                        </button>
+                                                                        <a href="{{ route('deletePatient', $record->id) }}"
+                                                                           onclick="deletePatient('{{ $record->firstname }}', '{{ $record->lastname }}')">
+                                                                            <img
+                                                                                src="{{ asset('nlimages/delete.png') }}"
+                                                                                height="20">
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <div id="encounter{{ $record->id }}" style="display: none;position: relative;padding:0px 6rem 0px 6rem;">
+                                                            <div id="encounter{{ $record->id }}"
+                                                                 style="display: none;position: relative;padding:0px 6rem 0px 6rem;">
                                                                 @forelse ($visitYears as $index => $year)
                                                                     @php
                                                                         if ($year[0] != date('Y')) {
@@ -1555,30 +1688,40 @@
                                                                         $printyear=false;
                                                                         }
                                                                     @endphp
-                                                                    <div style="text-align:left;"  class="bg-{{$icon}}">
+                                                                    <div style="text-align:left;" class="bg-{{$icon}}">
                                                                         @if (count($year))
                                                                             <a style="display:block;color:black;text-decoration:none;width:100%;border-bottom:1px solid gray;"
                                                                                href="javascript:showhideyear({{ $record->id }},{{ $year[0] }})">
-                                                                                <img id="patientid{{ $record->id }}year{{ $year[0] }}plus"
-                                                                                     src="{{ $year[0] == date('Y') ? 'images/minus.png' : 'images/plus.png' }}" width="10"
-                                                                                     height="10">
+                                                                                <img
+                                                                                    id="patientid{{ $record->id }}year{{ $year[0] }}plus"
+                                                                                    src="{{ $year[0] == date('Y') ? 'images/minus.png' : 'images/plus.png' }}"
+                                                                                    width="10"
+                                                                                    height="10">
                                                                                 <b style="display:inline-block; margin:2px 0 2px 0;">{{ $year[0] }}</b>
                                                                                 {{ $year[1]->count }}
                                                                                 Visit(s)
                                                                             </a>
-                                                                            <div id="patientid{{ $record->id }}year{{ $year[0] }}"
-                                                                                 style="display:{{ $year[0] == date('Y') ? 'block' : 'none' }};">
-                                                                                <table id="patientid{{ $record->id }}'year{{ $year[0] }}index{{ $index }}"
-                                                                                       style="border:1px solid gray" width="100%" cellspacing="0" cellpadding="5">
+                                                                            <div
+                                                                                id="patientid{{ $record->id }}year{{ $year[0] }}"
+                                                                                style="display:{{ $year[0] == date('Y') ? 'block' : 'none' }};">
+                                                                                <table
+                                                                                    id="patientid{{ $record->id }}'year{{ $year[0] }}index{{ $index }}"
+                                                                                    style="border:1px solid gray"
+                                                                                    width="100%" cellspacing="0"
+                                                                                    cellpadding="5">
                                                                                     <thead>
                                                                                     <tr>
                                                                                         <th class="text-left border-bottom"></th>
-                                                                                        <th class="text-center border-bottom">Visit #</th>
+                                                                                        <th class="text-center border-bottom">
+                                                                                            Visit #
+                                                                                        </th>
                                                                                         <th class="text-left border-bottom"></th>
                                                                                         <th class="text-left border-bottom"></th>
                                                                                         <th class="text-left border-bottom"></th>
-                                                                                        <th colspan="4" class="border-bottom"></th>
-                                                                                        <th class=" border-bottom" colspan="2"></th>
+                                                                                        <th colspan="4"
+                                                                                            class="border-bottom"></th>
+                                                                                        <th class=" border-bottom"
+                                                                                            colspan="2"></th>
                                                                                         <th class=" border-bottom"></th>
                                                                                     </tr>
                                                                                     </thead>
@@ -1592,15 +1735,19 @@
                                                                                         @endphp
                                                                                         <tr id="visitRow{{ $visitRecord->id }}">
                                                                                             <td class="text-center border-bottom">
-                                                                                                <img src={{asset("nlimages/manageicons/".($visitRecord->phonecall == 'yes' ? 'phoneactive' : 'phoneinactive').".png")}}
-                                                                                                        width="20" height="20" style="display:inline"
-                                                                                                     onclick="showphone({{$visitRecord->id}},{{$record->id}})"
-                                                                                                     ondblclick="markphoned({{$visitRecord->id}},{{$visitRecord->phonecall}},{{$record->patient_id}})">
+                                                                                                <img
+                                                                                                    src={{asset("nlimages/manageicons/".($visitRecord->phonecall == 'yes' ? 'phoneactive' : 'phoneinactive').".png")}}
+                                                                                                        width="20"
+                                                                                                    height="20"
+                                                                                                    style="display:inline"
+                                                                                                    onclick="showphone({{$visitRecord->id}},{{$record->id}})"
+                                                                                                    ondblclick="markphoned({{$visitRecord->id}},{{$visitRecord->phonecall}},{{$record->patient_id}})">
                                                                                             </td>
                                                                                             <td class="text-center border-bottom">
                                                                                                 {{ $ind + 1 }}
                                                                                             </td>
-                                                                                            <td class="text-center border-bottom" style="position:relative">
+                                                                                            <td class="text-center border-bottom"
+                                                                                                style="position:relative">
                                                                                                 @if ($visitRecord->billing == 'ready')
                                                                                                     @php
                                                                                                         $billsrc='billingready';
@@ -1616,76 +1763,103 @@
                                                                                                 @endif
 
 
-                                                                                                    {{--<span>{{$visitRecord->billing}}</span>--}}
+                                                                                                {{--<span>{{$visitRecord->billing}}</span>--}}
                                                                                                 @if ($record->paymenttype == 'Insurance')
-                                                                                                    <img src="{{ asset('/nlimages/billing/' . $billsrc . '.png') }}"
-                                                                                                         width="15" height="15" style="display:inline;"
-                                                                                                         onmouseover="previewbp('{{ $visitRecord->id }}','billing','on')"
-                                                                                                         onmouseout="previewbp('{{ $visitRecord->id }}','billing','off');"
-                                                                                                         onclick="showbp('{{ $visitRecord->id }}','billing','{{ $visitRecord->billing }}','{{ $record->id }}')">
-                                                                                                    <div style="text-align:left;position:absolute;top:23px;left;0px;min-height:260px;min-width:500px;display:none;background-color:#8dd8ff;border:1px solid #005c8b;z-index:1;padding:15px;"
-                                                                                                         id="billing{{ $visitRecord->id }}">
-                                                                                                        <table width="100%">
+                                                                                                    <img
+                                                                                                        src="{{ asset('/nlimages/billing/' . $billsrc . '.png') }}"
+                                                                                                        width="15"
+                                                                                                        height="15"
+                                                                                                        style="display:inline;"
+                                                                                                        onmouseover="previewbp('{{ $visitRecord->id }}','billing','on')"
+                                                                                                        onmouseout="previewbp('{{ $visitRecord->id }}','billing','off');"
+                                                                                                        onclick="showbp('{{ $visitRecord->id }}','billing','{{ $visitRecord->billing }}','{{ $record->id }}')">
+                                                                                                    <div
+                                                                                                        style="text-align:left;position:absolute;top:23px;left;0px;min-height:260px;min-width:500px;display:none;background-color:#8dd8ff;border:1px solid #005c8b;z-index:1;padding:15px;"
+                                                                                                        id="billing{{ $visitRecord->id }}">
+                                                                                                        <table
+                                                                                                            width="100%">
                                                                                                             <tr>
                                                                                                                 <td align="center">
                                                                                                                     <b>Billing</b>:
                                                                                                                     {{ $visitRecord->encounterdate }}
                                                                                                                     <Br><br>
-                                                                                                                    <input type="radio"
-                                                                                                                           id="billingincomplete{{ $visitRecord->id }}"
-                                                                                                                           value="incomplete" name="billingStatus{{$visitRecord->id}}"
-                                                                                                                            {{ $visitRecord->billing == 'incomplete' || $visitRecord->billing == '' ? 'checked' : '' }}>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        id="billingincomplete{{ $visitRecord->id }}"
+                                                                                                                        value="incomplete"
+                                                                                                                        name="billingStatus{{$visitRecord->id}}"
+                                                                                                                        {{ $visitRecord->billing == 'incomplete' || $visitRecord->billing == '' ? 'checked' : '' }}>
                                                                                                                     Incomplete
-                                                                                                                    <input type="radio"
-                                                                                                                           id="billingready{{ $visitRecord->id }}"
-                                                                                                                           value="ready" name="billingStatus{{$visitRecord->id}}"
-                                                                                                                            {{ $visitRecord->billing == 'ready' ? 'checked' : '' }}>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        id="billingready{{ $visitRecord->id }}"
+                                                                                                                        value="ready"
+                                                                                                                        name="billingStatus{{$visitRecord->id}}"
+                                                                                                                        {{ $visitRecord->billing == 'ready' ? 'checked' : '' }}>
                                                                                                                     Ready
-                                                                                                                    <input type="radio"
-                                                                                                                           id="billingcomplete{{ $visitRecord->id }}"
-                                                                                                                           value="complete" name="billingStatus{{$visitRecord->id}}"
-                                                                                                                            {{ $visitRecord->billing == 'complete' ? 'checked' : '' }}>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        id="billingcomplete{{ $visitRecord->id }}"
+                                                                                                                        value="complete"
+                                                                                                                        name="billingStatus{{$visitRecord->id}}"
+                                                                                                                        {{ $visitRecord->billing == 'complete' ? 'checked' : '' }}>
                                                                                                                     Complete
                                                                                                                     <br><br>
                                                                                                                 </td>
                                                                                                                 <td class="text-right">
-                                                                                                                    <img src={{ asset('images/delete.png') }}
+                                                                                                                    <img
+                                                                                                                        src={{ asset('images/delete.png') }}
                                                                                                                             onclick="showbp({{ $visitRecord->id }},'billing')">
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td>Claim #: </td>
                                                                                                                 <td>
-                                                                                                                    <input id="billingclaimnumber{{ $visitRecord->id }}"
-                                                                                                                           value="{{ $visitRecord->billingclaimnumber }}">
+                                                                                                                    Claim
+                                                                                                                    #:
+                                                                                                                </td>
+                                                                                                                <td>
+                                                                                                                    <input
+                                                                                                                        id="billingclaimnumber{{ $visitRecord->id }}"
+                                                                                                                        value="{{ $visitRecord->billingclaimnumber }}">
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td>Date Sent: </td>
+                                                                                                                <td>Date
+                                                                                                                    Sent:
+                                                                                                                </td>
                                                                                                                 <td>
-                                                                                                                    <input id="billingdatesent{{ $visitRecord->id }}"
-                                                                                                                           value="{{ $visitRecord->billingdatesent }}">
+                                                                                                                    <input
+                                                                                                                        id="billingdatesent{{ $visitRecord->id }}"
+                                                                                                                        value="{{ $visitRecord->billingdatesent }}">
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td>Billed Amount:</td>
+                                                                                                                <td>
+                                                                                                                    Billed
+                                                                                                                    Amount:
+                                                                                                                </td>
                                                                                                                 <td valign="top">
-                                                                                                                    $ <input
-                                                                                                                            onchange="javascript:changeinputcolor({{ $visitRecord->id }})"
-                                                                                                                            id="billingamount{{ $visitRecord->id }}"
-                                                                                                                            value="{{ $visitRecord->billingamount != '' ? $visitRecord->billingamount : ($visitRecord->codedamount != '' ? $visitRecord->codedamount : 0) }}"
-                                                                                                                            style="width:75px;{{ $visitRecord->billingamount == '' && $visitRecord->codedamount != '' ? 'color:#1200fe;' : '' }}">
+                                                                                                                    $
+                                                                                                                    <input
+                                                                                                                        onchange="javascript:changeinputcolor({{ $visitRecord->id }})"
+                                                                                                                        id="billingamount{{ $visitRecord->id }}"
+                                                                                                                        value="{{ $visitRecord->billingamount != '' ? $visitRecord->billingamount : ($visitRecord->codedamount != '' ? $visitRecord->codedamount : 0) }}"
+                                                                                                                        style="width:75px;{{ $visitRecord->billingamount == '' && $visitRecord->codedamount != '' ? 'color:#1200fe;' : '' }}">
                                                                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                                                     {{ $visitRecord->codedamount != '' ? 'Coded: $' . $visitRecord->codedamount : 'Not coded' }}
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td>Insurance Paid: </td>
+                                                                                                                <td>
+                                                                                                                    Insurance
+                                                                                                                    Paid:
+                                                                                                                </td>
                                                                                                                 <td>{{ $visitRecord->billingpaid != '' ? $visitRecord->billingpaid : 'Not listed' }}
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </table>
-                                                                                                        <table width="100%">
+                                                                                                        <table
+                                                                                                            width="100%">
                                                                                                             <tr>
                                                                                                                 <td>
                                                                                                                     <b>Notes:</b>
@@ -1693,14 +1867,19 @@
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
-                                                                                                                <td align="left" valign="middle">
-                                                                                                                                        <textarea id="billingnotes{{ $visitRecord->id }}"
-                                                                                                                                                  style="width:320px;height:50px">{{ $visitRecord->billingnotes }}</textarea>
+                                                                                                                <td align="left"
+                                                                                                                    valign="middle">
+                                                                                                                                        <textarea
+                                                                                                                                            id="billingnotes{{ $visitRecord->id }}"
+                                                                                                                                            style="width:320px;height:50px">{{ $visitRecord->billingnotes }}</textarea>
                                                                                                                 </td>
                                                                                                                 <td align="center">
-                                                                                                                    <button type="button" class="btn p-0"
-                                                                                                                            onclick="submitBilling({{ $visitRecord->id }})">
-                                                                                                                        <img src={{ asset('nlimages/submitbutton.png') }}
+                                                                                                                    <button
+                                                                                                                        type="button"
+                                                                                                                        class="btn p-0"
+                                                                                                                        onclick="submitBilling({{ $visitRecord->id }})">
+                                                                                                                        <img
+                                                                                                                            src={{ asset('nlimages/submitbutton.png') }}
                                                                                                                                 alt="Submit">
                                                                                                                     </button>
                                                                                                                 </td>
@@ -1713,7 +1892,8 @@
                                                                                             </td>
                                                                                             <td class="border-bottom">
                                                                                                 {{-- <a href="javascript:encountersubmit({{ $record->id }},'{{ $visitRecord->encounterdate }}','soap.php?p=subjective')" id="encounterlink{{ $visitRecord->id }}"> --}}
-                                                                                                <a href="{{ url('subjective/'.$record->id) }}" id="encounterlink{{ $visitRecord->id }}">
+                                                                                                <a href="{{ url('subjective/'.$record->id) }}"
+                                                                                                   id="encounterlink{{ $visitRecord->id }}">
                                                                                                     {{ $visitRecord->encounterdate }}
                                                                                                 </a>
                                                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1733,25 +1913,43 @@
                                                                                                     @endphp
                                                                                                 @endif
 
-                                                                                                    {{--<span>{{$visitRecord->payment}}</span>--}}
+                                                                                                {{--<span>{{$visitRecord->payment}}</span>--}}
                                                                                                 @if ($record->paymenttype == 'Cash' || $visitRecord->billing == 'complete')
-                                                                                                    <div style="position:relative;">
-                                                                                                        <img src="{{asset('/nlimages/billing/'.$paysrc.'.png')}}" width="15" height="15"
-                                                                                                             style="display:inline;"
-                                                                                                             onmouseover="previewbp({{ $visitRecord->id }},'payment','on')"
-                                                                                                             onmouseout="previewbp({{ $visitRecord->id }},'payment','off')"
-                                                                                                             onclick="showbp('{{ $visitRecord->id }}','payment','{{ $visitRecord->payment }}','{{ $visitRecord->patient_id }}')">
+                                                                                                    <div
+                                                                                                        style="position:relative;">
+                                                                                                        <img
+                                                                                                            src="{{asset('/nlimages/billing/'.$paysrc.'.png')}}"
+                                                                                                            width="15"
+                                                                                                            height="15"
+                                                                                                            style="display:inline;"
+                                                                                                            onmouseover="previewbp({{ $visitRecord->id }},'payment','on')"
+                                                                                                            onmouseout="previewbp({{ $visitRecord->id }},'payment','off')"
+                                                                                                            onclick="showbp('{{ $visitRecord->id }}','payment','{{ $visitRecord->payment }}','{{ $visitRecord->patient_id }}')">
                                                                                                         @if ($visitRecord->paymentnotes == '')
-                                                                                                            <img src="{{asset('images/spacer.png')}}" width="15" height="15">
+                                                                                                            <img
+                                                                                                                src="{{asset('images/spacer.png')}}"
+                                                                                                                width="15"
+                                                                                                                height="15">
                                                                                                         @else
-                                                                                                            <img src={{asset("nlimages/notes.png")}} width="15" height="15">
+                                                                                                            <img
+                                                                                                                src={{asset("nlimages/notes.png")}} width="15"
+                                                                                                                height="15">
                                                                                                         @endif
-                                                                                                        <img src="{{asset('images/spacer.png')}}" id="metdeductible{{ $visitRecord->id }}" width="15"
-                                                                                                             height="15">
-                                                                                                        <img src="{{asset('images/spacer.png')}}" id="cashpaid{{ $visitRecord->id }}" width="15" height="15">
-                                                                                                        <div style="text-align:left;position:absolute;top:23px;left:-200px;min-height:370px;min-width:500px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
-                                                                                                             id="payment{{ $visitRecord->id }}">
-                                                                                                            <table width="100%">
+                                                                                                        <img
+                                                                                                            src="{{asset('images/spacer.png')}}"
+                                                                                                            id="metdeductible{{ $visitRecord->id }}"
+                                                                                                            width="15"
+                                                                                                            height="15">
+                                                                                                        <img
+                                                                                                            src="{{asset('images/spacer.png')}}"
+                                                                                                            id="cashpaid{{ $visitRecord->id }}"
+                                                                                                            width="15"
+                                                                                                            height="15">
+                                                                                                        <div
+                                                                                                            style="text-align:left;position:absolute;top:23px;left:-200px;min-height:370px;min-width:500px;display:none;background-color:#ebf5e5;border:1px solid #15b100;z-index:1;padding:15px;"
+                                                                                                            id="payment{{ $visitRecord->id }}">
+                                                                                                            <table
+                                                                                                                width="100%">
                                                                                                                 <tr>
                                                                                                                     <td>
                                                                                                                         <b>Payment</b>:
@@ -1759,46 +1957,57 @@
                                                                                                                         <br><Br>
                                                                                                                     </td>
                                                                                                                     <td class="text-center">
-                                                                                                                        <input type="radio"
-                                                                                                                               id="paymentwaiting{{ $visitRecord->id }}"
-                                                                                                                               value="waiting"
-                                                                                                                               name="paymentStatus{{$visitRecord->id}}"
-                                                                                                                                {{ $visitRecord->payment == 'waiting' || $visitRecord->payment == '' ? 'checked' : '' }}>
+                                                                                                                        <input
+                                                                                                                            type="radio"
+                                                                                                                            id="paymentwaiting{{ $visitRecord->id }}"
+                                                                                                                            value="waiting"
+                                                                                                                            name="paymentStatus{{$visitRecord->id}}"
+                                                                                                                            {{ $visitRecord->payment == 'waiting' || $visitRecord->payment == '' ? 'checked' : '' }}>
                                                                                                                         Waiting
-                                                                                                                        <input type="radio"
-                                                                                                                               id="paymentpartial{{ $visitRecord->id }}"
-                                                                                                                               value="partial"
-                                                                                                                               name="paymentStatus{{$visitRecord->id}}"
-                                                                                                                                {{ $visitRecord->payment == 'partial' ? 'checked' : '' }}>
+                                                                                                                        <input
+                                                                                                                            type="radio"
+                                                                                                                            id="paymentpartial{{ $visitRecord->id }}"
+                                                                                                                            value="partial"
+                                                                                                                            name="paymentStatus{{$visitRecord->id}}"
+                                                                                                                            {{ $visitRecord->payment == 'partial' ? 'checked' : '' }}>
                                                                                                                         Partial
-                                                                                                                        <input type="radio"
-                                                                                                                               id="paymentfull{{ $visitRecord->id }}"
-                                                                                                                               value="full"
-                                                                                                                               name="paymentStatus{{$visitRecord->id}}"
-                                                                                                                                {{ $visitRecord->payment == 'full' ? 'checked' : '' }}>
+                                                                                                                        <input
+                                                                                                                            type="radio"
+                                                                                                                            id="paymentfull{{ $visitRecord->id }}"
+                                                                                                                            value="full"
+                                                                                                                            name="paymentStatus{{$visitRecord->id}}"
+                                                                                                                            {{ $visitRecord->payment == 'full' ? 'checked' : '' }}>
                                                                                                                         Full<Br><Br>
                                                                                                                     </td>
                                                                                                                     <td>
-                                                                                                                        <img src={{ asset('images/delete.png') }}
+                                                                                                                        <img
+                                                                                                                            src={{ asset('images/delete.png') }}
                                                                                                                                 onclick="showbp('{{ $visitRecord->id }}','payment')">
                                                                                                                         <br><br>
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                                 <tr>
                                                                                                                     <td>
-                                                                                                                        Claim #:
+                                                                                                                        Claim
+                                                                                                                        #:
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         {{ $visitRecord->billingclaimnumber != '' ? $visitRecord->billingclaimnumber : 'Not listed' }}
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                                 <tr>
-                                                                                                                    <td>Date Sent: </td>
+                                                                                                                    <td>
+                                                                                                                        Date
+                                                                                                                        Sent:
+                                                                                                                    </td>
                                                                                                                     <td>{{ $visitRecord->billingdatesent != '' ? $visitRecord->billingdatesent : 'Not listed' }}
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                                 <tr>
-                                                                                                                    <td>Billed Amount: </td>
+                                                                                                                    <td>
+                                                                                                                        Billed
+                                                                                                                        Amount:
+                                                                                                                    </td>
                                                                                                                     <td>
                                                                                                                         {{ $visitRecord->billingamount != '' ? '$' . $visitRecord->billingamount : 'Not listed' }}
                                                                                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1807,19 +2016,24 @@
                                                                                                                 </tr>
                                                                                                                 <tr>
                                                                                                                     <td>
-                                                                                                                        Insurance Payment:
+                                                                                                                        Insurance
+                                                                                                                        Payment:
                                                                                                                         <br>
-                                                                                                                        <div id="paidto{{ $visitRecord->id }}">
+                                                                                                                        <div
+                                                                                                                            id="paidto{{ $visitRecord->id }}">
                                                                                                                             <Br>
                                                                                                                         </div>
                                                                                                                     </td>
                                                                                                                     <td>
-                                                                                                                        $ <input id="billingpaid{{ $visitRecord->id }}"
-                                                                                                                                 value="{{ $visitRecord->billingpaid }}">
+                                                                                                                        $
+                                                                                                                        <input
+                                                                                                                            id="billingpaid{{ $visitRecord->id }}"
+                                                                                                                            value="{{ $visitRecord->billingpaid }}">
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                             </table>
-                                                                                                            <table width="100%">
+                                                                                                            <table
+                                                                                                                width="100%">
                                                                                                                 <tr>
                                                                                                                     <td>
                                                                                                                         <b>Notes:</b>
@@ -1827,16 +2041,20 @@
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                                 <tr>
-                                                                                                                    <td align="left" valign="middle">
+                                                                                                                    <td align="left"
+                                                                                                                        valign="middle">
                                                                                                                                             <textarea
-                                                                                                                                                    id="paymentnotes{{ $visitRecord->id }}"
-                                                                                                                                                    style="width:320px;height:50px">{{ $visitRecord->paymentnotes }}</textarea>
+                                                                                                                                                id="paymentnotes{{ $visitRecord->id }}"
+                                                                                                                                                style="width:320px;height:50px">{{ $visitRecord->paymentnotes }}</textarea>
                                                                                                                     </td>
                                                                                                                     <td align="center">
-                                                                                                                        <button type="button" class="btn p-0">
-                                                                                                                            <img src={{ asset('nlimages/submitbutton.png') }}
+                                                                                                                        <button
+                                                                                                                            type="button"
+                                                                                                                            class="btn p-0">
+                                                                                                                            <img
+                                                                                                                                src={{ asset('nlimages/submitbutton.png') }}
                                                                                                                                     alt="Submit"
-                                                                                                                                 onclick="paymentSumbit('{{ $visitRecord->id }}')">
+                                                                                                                                onclick="paymentSumbit('{{ $visitRecord->id }}')">
                                                                                                                         </button>
                                                                                                                     </td>
                                                                                                                 </tr>
@@ -1885,19 +2103,29 @@
                                                                                                                 }
                                                                                                             @endphp
                                                                                                             &nbsp;&nbsp;&nbsp;
-                                                                                                            <b>On this date:</b>
-                                                                                                            <br>YTD insurance
-                                                                                                            paid: $ <strong>{{ $ytdpaid }}</strong>
+                                                                                                            <b>On this
+                                                                                                                date:</b>
+                                                                                                            <br>YTD
+                                                                                                            insurance
+                                                                                                            paid: $
+                                                                                                            <strong>{{ $ytdpaid }}</strong>
                                                                                                             <br>
-                                                                                                            Of <strong>$ </strong> deductible, $
-                                                                                                            <strong>{{ $paidtodeductible }}</strong> has
+                                                                                                            Of
+                                                                                                            <strong>$ </strong>
+                                                                                                            deductible,
+                                                                                                            $
+                                                                                                            <strong>{{ $paidtodeductible }}</strong>
+                                                                                                            has
                                                                                                             been paid.
                                                                                                             <strong>
                                                                                                                 $ {{ $deductibleremaining }}</strong>
                                                                                                             remaining<br>
-                                                                                                            <strong>$ {{ $paidtooffice }}</strong> has
-                                                                                                            been paid year to
-                                                                                                            date to office.<br>
+                                                                                                            <strong>$ {{ $paidtooffice }}</strong>
+                                                                                                            has
+                                                                                                            been paid
+                                                                                                            year to
+                                                                                                            date to
+                                                                                                            office.<br>
                                                                                                             @php
                                                                                                                 if($thispaid!=''){
                                                                                                                     $paidto='';
@@ -1940,44 +2168,66 @@
                                                                                                 @endif
 
 
-
                                                                                             </td>
                                                                                             <td class="border-bottom">
-                                                                                                <img src={{asset('images/spacer.png')}} width="65" height="3">
+                                                                                                <img
+                                                                                                    src={{asset('images/spacer.png')}} width="65"
+                                                                                                    height="3">
                                                                                             </td>
                                                                                             <td class="border-bottom">
-                                                                                                <img src={{asset('images/spacer.png')}} width="65" height="3">
+                                                                                                <img
+                                                                                                    src={{asset('images/spacer.png')}} width="65"
+                                                                                                    height="3">
                                                                                             </td>
                                                                                             <td class="border-bottom">
-                                                                                                <img src={{asset('images/spacer.png')}} width="65" height="3">
+                                                                                                <img
+                                                                                                    src={{asset('images/spacer.png')}} width="65"
+                                                                                                    height="3">
                                                                                             </td>
                                                                                             <td class="border-bottom">
-                                                                                                <img src={{asset('images/spacer.png')}} width="65" height="3">
+                                                                                                <img
+                                                                                                    src={{asset('images/spacer.png')}} width="65"
+                                                                                                    height="3">
                                                                                             </td>
-                                                                                            <td class="border-bottom text-left" valign="middle">
-                                                                                                <table cellspacing="0" cellpadding="0">
+                                                                                            <td class="border-bottom text-left"
+                                                                                                valign="middle">
+                                                                                                <table cellspacing="0"
+                                                                                                       cellpadding="0">
                                                                                                     <tr>
-                                                                                                        <td width="20" align="center" align="center">
+                                                                                                        <td width="20"
+                                                                                                            align="center"
+                                                                                                            align="center">
                                                                                                             <a
-                                                                                                                    href="{{ route('progressNotes', [$record->id, "$visitRecord->id"]) }}">
-                                                                                                                <img src={{ asset('nlimages/notesnew.png') }}
-                                                                                                                        height="20" class="no-print" style="display:inline">
+                                                                                                                href="{{ route('progressNotes', [$record->id, "$visitRecord->id"]) }}">
+                                                                                                                <img
+                                                                                                                    src={{ asset('nlimages/notesnew.png') }}
+                                                                                                                        height="20"
+                                                                                                                    class="no-print"
+                                                                                                                    style="display:inline">
                                                                                                             </a>
                                                                                                         </td>
                                                                                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                                                                        <td width="20" align="center">
+                                                                                                        <td width="20"
+                                                                                                            align="center">
                                                                                                             <a
-                                                                                                                    href="{{ route('assessmentICD', [$record->id, $visitRecord->id]) }}">
-                                                                                                                <img src={{ asset('nlimages/progressnew.png') }}
-                                                                                                                        height="20" class="no-print" style="display:inline">
+                                                                                                                href="{{ route('assessmentICD', [$record->id, $visitRecord->id]) }}">
+                                                                                                                <img
+                                                                                                                    src={{ asset('nlimages/progressnew.png') }}
+                                                                                                                        height="20"
+                                                                                                                    class="no-print"
+                                                                                                                    style="display:inline">
                                                                                                             </a>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </table>
                                                                                             </td>
                                                                                             <td class="border-bottom text-center">
-                                                                                                <button type="button" class="btn p-0" onclick="deleteVisit('{{ $visitRecord->id }}', '{{ $visitRecord->encounterdate }}')">
-                                                                                                    <img src={{ asset('nlimages/deletenew.png') }} height="20" class="no-print">
+                                                                                                <button type="button"
+                                                                                                        class="btn p-0"
+                                                                                                        onclick="deleteVisit('{{ $visitRecord->id }}', '{{ $visitRecord->encounterdate }}')">
+                                                                                                    <img
+                                                                                                        src={{ asset('nlimages/deletenew.png') }} height="20"
+                                                                                                        class="no-print">
                                                                                                 </button>
                                                                                             </td>
                                                                                         </tr>
@@ -2051,7 +2301,7 @@
 </script>
 <script>
     function goToManage(e) {
-        window.location = root + "/edit/" + e.currentTarget.value;
+        window.location = "/edit/" + e.currentTarget.value;
     }
 
 </script>
@@ -2074,7 +2324,7 @@
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
         /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function(e) {
+        inp.addEventListener("input", function (e) {
             var a, b, i, val = this.value;
             /*close any already open lists of autocompleted values*/
             closeAllLists();
@@ -2103,7 +2353,7 @@
                     b.innerHTML += "<input type='hidden' value='" + arr[
                         i] + "'>";
                     /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function(e) {
+                    b.addEventListener("click", function (e) {
                         /*insert the value for the autocomplete text field:*/
                         inp.value = this.getElementsByTagName(
                             "input")[0].value;
@@ -2116,7 +2366,7 @@
             }
         });
         /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function(e) {
+        inp.addEventListener("keydown", function (e) {
             var x = document.getElementById(this.id + div + "-list");
             if (x) x = x.getElementsByTagName("div");
             if (e.keyCode == 40) {
@@ -2169,8 +2419,9 @@
                 }
             }
         }
+
         /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function(e) {
+        document.addEventListener("click", function (e) {
             closeAllLists(e.target);
         });
     }

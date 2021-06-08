@@ -52,7 +52,7 @@ Route::get('admin', 'HomeController@admin')->name('admin');
 Route::get('addclient', 'HomeController@addClient')->name('addclient');
 Route::post('insertclient', 'HomeController@insertCleint')->name('insertclient');
 
-Route::post('deletePatient/{id}', 'PatientController@deletePatient')->name('deletePatient');
+Route::get('deletePatient/{id}', 'PatientController@deletePatient')->name('deletePatient');
 Route::post('deleteVisit/{id}', 'PatientController@deleteVisit')->name('deleteVisit');
 
 Route::get('edit/{id}', 'PatientController@edit')->name('edit');
@@ -152,7 +152,7 @@ Route::get('progressNotes/{id}/{encId}', 'VisitController@progressNotes')->name(
 Route::get('patientportal', 'HomeController@patientPortal')->name('patientportal');
 
 
-/*Route::get('delete/{id}','HomeController@delete')->name('delete'); 
+/*Route::get('delete/{id}','HomeController@delete')->name('delete');
 Route::get('admin', 'HomeController@admin')->name('admin');
 Route::get('forms', 'HomeController@forms')->name('forms');
 Route::get('registernewuser', 'HomeController@newUser')->name('registernewuser');

@@ -2,7 +2,7 @@
 
 // Stars functions
 var shownstar = '';
-var root = '/~raokalim';
+// var root = '/~raokalim';
 
 
 function bpstatus(uniquekey, billpay, status, patient) {
@@ -196,33 +196,33 @@ function submitStar(id, priority = false) {
  * @param {String} lastname Last name to show in message
  * @param {String} backURL URL to go after delete Patient
  */
-function deletePatient(id, firstname, lastname, backURL = false) {
-    if (window.confirm('Are you sure you want to delete all data for ' + firstname + ' ' + lastname + '?')) {
-        if (window.confirm('Please confirm: this will delete all visits and associated data for ' + firstname + ' ' + lastname + '!')) {
-            $.ajax({
-                type: "post",
-                url: root + "/deletePatient/" + id,
-                headers: {
-                    'X-CSRF-TOKEN': csrf
-                },
-                success: function (response) {
-                    if (backURL) {
-                        document.location = backURL;
-                    } else {
-                        $("#patientRow" + id).fadeOut();
-                        $("#alertDiv").fadeIn();
-                        $("#billAlert").html("Patient " + firstname + ' ' + lastname + ' deleted!');
-                    }
-
-                },
-                error: function (response) {
-                    $("#alertDiv").fadeIn();
-                    $("#billAlert").html("Error! Something wrong");
-                }
-            });
-        }
-    }
-}
+// function deletePatient(id, firstname, lastname, backURL = false) {
+//     if (window.confirm('Are you sure you want to delete all data for ' + firstname + ' ' + lastname + '?')) {
+//         if (window.confirm('Please confirm: this will delete all visits and associated data for ' + firstname + ' ' + lastname + '!')) {
+//             $.ajax({
+//                 type: "post",
+//                 url: root + "/deletePatient/" + id,
+//                 headers: {
+//                     'X-CSRF-TOKEN': csrf
+//                 },
+//                 success: function (response) {
+//                     if (backURL) {
+//                         document.location = backURL;
+//                     } else {
+//                         $("#patientRow" + id).fadeOut();
+//                         $("#alertDiv").fadeIn();
+//                         $("#billAlert").html("Patient " + firstname + ' ' + lastname + ' deleted!');
+//                     }
+//
+//                 },
+//                 error: function (response) {
+//                     $("#alertDiv").fadeIn();
+//                     $("#billAlert").html("Error! Something wrong");
+//                 }
+//             });
+//         }
+//     }
+// }
 
 /**
  * Delete Visit

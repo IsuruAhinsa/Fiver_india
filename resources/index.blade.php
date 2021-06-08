@@ -67,7 +67,7 @@
                         <input type="hidden" name="gotodate">
                         <input type="hidden" name="encounterviewyear">
                         <input type="hidden" name="markbilling">
-                        <form name="headerform" action="" method="" style="display:inline">
+                         <form name="headerform" action="" method="" style="display:inline">
                             <font size="+1">Please select a patient to begin!</font>&nbsp;&nbsp;&nbsp;<select
                                 name="patientid" id="headerpatientid" style="width:150px" onchange="goToManage(event);">
                                 <option value="" selected="">Select...</option>
@@ -76,7 +76,7 @@
                                         <option value="{{ $rec->id }}">
                                             {{ $rec->firstname }}, {{ $rec->lastname }} <br>
                                         </option>
-                                    @endforeach 
+                                    @endforeach
                                 @endforeach
                             </select>
                         </form>
@@ -214,7 +214,7 @@
                                                             }
 
                                                             function encountersubmit(patientid, date, action) {
-                                                            
+
                                                             //alert(patientid);
                                                             //alert(date);
                                                             //alert(action);
@@ -1468,7 +1468,7 @@
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
-                                                                            </table>                                                
+                                                                            </table>
                                                                             <div id="encounter{{ $record->id }}" style="display: none;position: relative;padding:0px 6rem 0px 6rem;">
                                                                                 @forelse ($visitYears as $index => $year)
                                                                                     @php
@@ -1518,7 +1518,7 @@
                                                                                                                         width="20" height="20" style="display:inline"
                                                                                                                         onclick="showphone($visitRecord->id,$record->id)"
                                                                                                                         ondblclick="markphoned($visitRecord->id,$visitRecord->phonecall,$record->patient_id)">
-                                                                    
+
                                                                                                                 </td>
                                                                                                                 <td class="text-center border-bottom">
                                                                                                                     {{ $ind + 1 }}
@@ -1761,9 +1761,9 @@
                                                                                                                                 @php
                                                                                                                                     $ytdpaid=0;
                                                                                                                                     $metdeductible=true;
-                                                                                                                                    if($printyear){ 
+                                                                                                                                    if($printyear){
                                                                                                                                         $ytdpaid=0;
-                                                                                                                                        $metdeductible=false; 
+                                                                                                                                        $metdeductible=false;
                                                                                                                                     }
                                                                                                                                     $thispaid=str_replace('$','',$visitRecord->billingpaid);
                                                                                                                                     $ytdpaid+=(float) $thispaid;
@@ -1774,10 +1774,10 @@
                                                                                                                                     (float) $deductible=0;
                                                                                                                                     for($di=0;$di<sizeof($deductibleyears);$di++){
                                                                                                                                         if($deductibleyears[$di]==$visitRecord->dateyear){
-                                                                                                                                            (float) $deductible=$billingdeductibles[$di]; 
-                                                                                                                                        } 
+                                                                                                                                            (float) $deductible=$billingdeductibles[$di];
+                                                                                                                                        }
                                                                                                                                     }
-                                                                                                                                    if(!(float) $deductible){ 
+                                                                                                                                    if(!(float) $deductible){
                                                                                                                                         if($record->insnetwork=='in')
                                                                                                                                             (float)$deductible=str_replace('$','',$record->insindeductible);
                                                                                                                                         else
@@ -1793,11 +1793,11 @@
                                                                                                                                     if($ytdpaid>=(float) $deductible){
                                                                                                                                         $paidtooffice=$ytdpaid-(float) $deductible;
                                                                                                                                         $paidtodeductible=(float) $deductible;
-                                                                                                                                        $deductibleremaining=0; 
-                                                                                                                                    } else{ 
+                                                                                                                                        $deductibleremaining=0;
+                                                                                                                                    } else{
                                                                                                                                         $paidtooffice=0;
                                                                                                                                         $paidtodeductible=$ytdpaid;
-                                                                                                                                        $deductibleremaining=(float) $deductible-$ytdpaid; 
+                                                                                                                                        $deductibleremaining=(float) $deductible-$ytdpaid;
                                                                                                                                     }
                                                                                                                                 @endphp
                                                                                                                                 &nbsp;&nbsp;&nbsp;
@@ -1836,9 +1836,9 @@
                                                                                                                                             echo 'Of the <strong>$' .$thispaid.'</strong> for this visit, <strong>$ '
                                                                                                                                                 .$thispaid
                                                                                                                                                 .'</strong> went to the deductible.';
-                                                                                                                                            $paidto='Deductible'; 
+                                                                                                                                            $paidto='Deductible';
                                                                                                                                         }
-                                                                                                                                        if($paidto!='') 
+                                                                                                                                        if($paidto!='')
                                                                                                                                             echo '<script> document.getElementById( "paidto'.$visitRecord->id.'").innerText = "('.$paidto.')"; </script> ';
                                                                                                                                         if($paidto=='Both'||($ytdpaid>(float)$deductible&&!$metdeductible)){
                                                                                                                                             echo '<script> document.getElementById( "metdeductible'.$visitRecord->id
@@ -1964,7 +1964,7 @@
 </script>
 <script>
     function goToManage(e) {
-        window.location = root + "/edit/" + e.currentTarget.value;
+        window.location = "/edit/" + e.currentTarget.value;
     }
 
 </script>
@@ -1977,7 +1977,7 @@
                 'url(/nlimages/navbg' + coding + '.png)';
         }
     }
-    
+
 </script>
 
     <script src="{{asset('js/patients.js')}}"></script>

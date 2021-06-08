@@ -43,7 +43,7 @@ class PatientController extends Controller
         unset($request->dobyear);
         Patient::create($request->all());
 
-        return Redirect::back()->with('success', 'Patient has been registered successfully!');
+        return Redirect::route('patient')->with('success', 'Patient has been registered successfully!');
     }
 
     /**
@@ -95,10 +95,10 @@ class PatientController extends Controller
     /**
      * Delete Patient
      */
-    public function deletePatient(Request $r)
+    public function deletePatient($id)
     {
-        Patient::findOrFail($r->id)->delete();
-        return $r->id;
+        Patient::findOrFail($id)->delete();
+        return back()->with('success', 'Patient Deleted!');
     }
 
     /**
@@ -134,7 +134,6 @@ class PatientController extends Controller
      */
     public function manage($id, $year = '')
     {
-        // dd($id);
         $data = Patient::findOrFail($id);
         if ($year) {
             $visits = $data->encounters()->where('dateyear', $year)->orderBy('id')->get();
@@ -148,7 +147,7 @@ class PatientController extends Controller
             $year = $year->toArray();
             array_push($yearVisits, $year);
         }
-        return Redirect::back()->with(compact('data', 'visits', 'yearVisits'));
+        //return Redirect::back()->with(compact('data', 'visits', 'yearVisits'));
         return view('patient.manage', compact('data', 'visits', 'yearVisits'));
     }
 
